@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'todo-lists',
   template: `
     <ul class="flex flex-col gap-1 list-disc px-4">
-      @for (todo of todoLists; track todo.name) {
+      @for (todo of todoLists; track todo.name + '_' + i; let i = $index) {
       <li>
         {{ todo.name }}
       </li>
