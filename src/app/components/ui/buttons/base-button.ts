@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   template: `<button
     (click)="onClick()"
-    class="bg-blue-500 text-white px-4 py-2 rounded-md"
+    class="text-white px-4 py-2 rounded-md"
   >
     {{ label }}
   </button>`,
@@ -13,4 +13,5 @@ import { Component, Input } from '@angular/core';
 export class BaseButtonComponent {
   @Input() label: string = '';
   @Input() onClick: () => void = () => {};
+  @Input() classes: string = '';
 }
