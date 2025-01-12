@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
+import { addTodo, resetAllTodoList } from '../stores/reducers/todo';
+import { store } from '../stores';
+import { TodoState } from '../types/todo';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  todoLists: { name: string }[] = [];
+  todoLists: TodoState[] = [];
   inputValue: string = '';
 
   addTodoList() {
     if (this.inputValue === '') return;
-    const newTodoLists = [...this.todoLists, { name: this.inputValue }];
-    this.todoLists = newTodoLists;
+    store.dispatch(addTodo({ name: this.inputValue }));
+    this.inputValue = '';
   }
 
   resetAllTodoList() {
-    this.todoLists = [];
+    store.dispatch(resetAllTodoList());
   }
 
   resetInputValue() {

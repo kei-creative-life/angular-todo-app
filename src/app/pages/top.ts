@@ -3,7 +3,7 @@ import { BaseButtonComponent } from '../components/ui/buttons/base-button';
 import { InputFormComponent } from '../components/ui/forms/input-form';
 import { TodoListsComponent } from '../components/pages/todo-lists';
 import { TodoService } from '../composables/todo';
-
+import { injectAppSelector } from '../stores';
 @Component({
   selector: 'top',
   template: `
@@ -33,7 +33,7 @@ import { TodoService } from '../composables/todo';
       />
     </div>
     <div class="p-2">
-      <todo-lists [todoLists]="todoService.todoLists" />
+      <todo-lists [todoLists]="todoLists()" />
     </div>
   `,
   imports: [BaseButtonComponent, InputFormComponent, TodoListsComponent],
@@ -41,4 +41,9 @@ import { TodoService } from '../composables/todo';
 export class TopComponent {
   title = 'TODO App';
   todoService = inject(TodoService);
+  todoLists = injectAppSelector((state) => state.todo);
+
+  constructor() {
+    console.log(this.todoLists());
+  }
 }
