@@ -13,10 +13,14 @@ import { TodoService } from '../composables/todo';
       <input-form
         label="タスク"
         placeholder="タスクを入力してください"
-        [value]="inputValue"
+        [value]="todoService.inputValue"
         (valueChange)="todoService.handleInputChange($event)"
       />
-      <base-button (click)="addTodoList()" label="追加" class="bg-blue-500" />
+      <base-button
+        (click)="todoService.addTodoList()"
+        label="追加"
+        class="bg-blue-500"
+      />
       <base-button
         (click)="todoService.resetInputValue()"
         label="フォームの内容をリセット"
